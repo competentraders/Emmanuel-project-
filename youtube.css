@@ -21,7 +21,6 @@ body {
 
 .ytube {
     padding-top: 5px;
-
 }
 
 .text {
@@ -29,62 +28,88 @@ body {
     font-family: fantasy;
     font-size: 22px;
     padding-top: 3px;
-
 }
 
 .text1 {
-    padding-left: 0px;
+    padding-left: 4px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 10px;
     position: absolute;
     padding-top: 5px;
-    padding-left: 4px;
 }
 
-/* The Top Area that is somehow Yellow */
+
+/* =====================================================
+   TOP SEARCH AREA
+   ===================================================== */
+
 .search-con {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 0px;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
     gap: 50px;
+
     background-color: rgba(245, 245, 220, 0.959);
+
     position: fixed;
+
+    /* Keep search area above normal content */
+    z-index: 1000;
 }
 
 .search-container {
     display: flex;
     justify-content: center;
-    margin: 0px;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
     gap: 20px;
 }
 
-/*The Search Box*/
+
+/* =====================================================
+   SEARCH BOX
+   ===================================================== */
+
 .search-box {
     display: flex;
     width: 600px;
-    /* adjust width */
     height: 40px;
+
     border: 1px solid #30303062;
     border-radius: 20px;
-    /* full pill shape */
-    overflow: hidden;
-    /* keeps button inside the curve */
+
+    /*
+       IMPORTANT:
+       Do NOT use overflow: hidden here.
+       It was cutting off "Click to Speak".
+    */
+    overflow: visible;
+
     background: #ffffff;
+
     margin-left: 60px;
     margin-right: 70px;
+
+    /*
+       Allows the mic tooltip to appear above other elements.
+    */
+    position: relative;
+    z-index: 10000;
 }
 
 .search-box input {
     flex: 1;
-    /* takes all space left */
+
     border: none;
     outline: none;
+
     padding: 0 16px;
+
     background: transparent;
     color: #000000;
+
     font-size: 16px;
 }
 
@@ -94,15 +119,21 @@ body {
 
 .search-box button {
     width: 44px;
+
     padding-left: 10px;
     padding-right: 10px;
+
     border: none;
     border-left: 1px solid #30303062;
+
     background: #ffffff;
+
     cursor: pointer;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     transition: background 0.2s;
 }
 
@@ -110,111 +141,190 @@ body {
     background: #e7dddd;
 }
 
-/* Everything about the Mic */
-.mice {
-    border: none;
-    padding-right: 0px;
-    padding-bottom: 0px;
-    background-color: rgba(245, 245, 220, 0.959);
-}
+
+/* =====================================================
+   MIC
+   ===================================================== */
 
 .mice {
     position: relative;
+
+    /*
+       Small button
+    */
+    width: 25px;
+    height: 25px;
+
+    padding: 0;
+    margin: 0;
+
+    /*
+       Remove button border
+    */
+    border: none;
+
+    /*
+       Remove button background
+    */
+    background: transparent;
+
+    cursor: pointer;
+
+    /*
+       Put mic above the search box and other elements
+    */
+    z-index: 2147483646;
 }
 
-.mice::after {
-    content: attr(data-mic);
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 5px;
-    padding: 6px 10px;
-    border: 1px solid #ccc;
 
-    /* Change the Colours Here */
-    background-color: #f9f9f9;
-    color: #333333;
-
-    font-size: 12px;
-    white-space: nowrap;
-    border-radius: 4px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-}
-
-.mice:hover::after {
-    opacity: 1;
-}
-
-/* End of the Hover text */
+/* MIC PNG */
 
 .mic {
-    margin-right: 10px;
-    margin-top: 0px;
-    padding-left: 0px;
-    width: 35px;
-    height: 35px;
-    background-color: white;
-    border-radius: 20px;
+    display: block;
+
+    width: 25px;
+    height: 25px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
     cursor: pointer;
 }
 
-.mic:hover {
-    background-color: rgb(219, 217, 217);
-    transition: 0.2s;
+
+/* =====================================================
+   CLICK TO SPEAK TOOLTIP
+   ===================================================== */
+
+.mice::after {
+    content: attr(data-mic);
+
+    position: absolute;
+
+    /*
+       Display tooltip below the microphone
+    */
+    top: 100%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    margin-top: 8px;
+
+    padding: 6px 10px;
+
+    background-color: #f9f9f9;
+    color: #333333;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    font-size: 20px;
+    font-weight: normal;
+
+    white-space: nowrap;
+
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+    /*
+       Hidden normally
+    */
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    /*
+       Put tooltip in front
+    */
+    z-index: 2147483647;
+
+    transition: opacity 0.2s ease;
 }
 
-/* End of Everything about Mic */
 
-/* Everything about Settings */
+/* SHOW CLICK TO SPEAK */
+
+.mice:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =====================================================
+   END MIC
+   ===================================================== */
+
+
+/* =====================================================
+   SETTINGS
+   ===================================================== */
+
 .settings {
     padding-top: 3px;
     padding-bottom: 2.5px;
     padding-left: 2px;
     padding-right: 2px;
-    height: 20px;
-    cursor: pointer;
+
     height: 25px;
     width: 25px;
+
+    cursor: pointer;
+
     background-color: white;
     border-radius: 20px;
 }
 
 .set {
     border: none;
+
     padding-right: 0px;
     padding-bottom: 0px;
-    background-color: rgba(245, 245, 220, 0.959);
-}
 
-.set {
+    background-color: rgba(245, 245, 220, 0.959);
+
     position: relative;
+
+    z-index: 500;
 }
 
 .set::after {
     content: attr(data-set);
+
     position: absolute;
+
     top: 100%;
     left: 50%;
+
     transform: translateX(-50%);
+
     margin-top: 5px;
+
     padding: 6px 10px;
+
     border: 1px solid #ccc;
 
-    /* Change the Colours Here */
     background-color: #f9f9f9;
     color: #333333;
 
     font-size: 12px;
+
     white-space: nowrap;
+
     border-radius: 4px;
+
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+
     opacity: 0;
+
     pointer-events: none;
+
     transition: opacity 0.2s ease;
+
+    z-index: 10000;
 }
 
 .set:hover::after {
@@ -226,16 +336,16 @@ body {
     transition: 0.2s;
 }
 
-/* End of the Hover text */
 
-/* End of Everything about Settings */
+/* =====================================================
+   OTHER BUTTON
+   ===================================================== */
 
 .button {
     padding-left: 20px;
     height: 50px;
     width: 100px;
     border-radius: 20px;
-
 }
 
 .profile1 {
@@ -244,83 +354,121 @@ body {
 }
 
 
-/*Everything concerning the sign in part*/
+/* =====================================================
+   SIGN IN
+   ===================================================== */
+
 .sign-in- {
     color: blue;
 }
 
 .sign-in-btn {
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
+
     padding: 8px 14px;
+
     border: 1px solid #3ea6ff;
-    /* YouTube blue */
+
     border-radius: 18px;
-    /* pill shape */
+
     background: #fff;
+
     color: #3ea6ff;
+
     font-size: 14px;
     font-weight: 500;
+
     cursor: pointer;
+
     transition: background 0.2s;
+
     text-decoration: none;
 }
 
 .sign-in-btn:hover {
     background: #def1ff;
-    /* light blue hover like YouTube */
 }
 
 .sign-in-btn svg {
     width: 20px;
     height: 20px;
+
     fill: currentcolor;
-    /* takes the blue color */
 }
 
 
+/* SIGN IN TOOLTIP */
+
 .tooltip-text {
     position: absolute;
+
     top: 110%;
     left: 95.6%;
+
     transform: translateX(-50%);
 
     background-color: rgba(96, 96, 96, 0.9);
+
     color: white;
+
     padding: 8px 12px;
+
     border-radius: 4px;
+
     font-size: 12px;
+
     white-space: nowrap;
+
     font-family: sans-serif;
 
     opacity: 0;
+
     pointer-events: none;
+
     transition: opacity 0.2s ease;
-    z-index: 100;
+
+    z-index: 10000;
 }
 
 .sign-in:hover .tooltip-text {
     opacity: 1;
 }
 
-/* End of Everything Concerning Sign-in */
+
+/* =====================================================
+   LEFT SIDEBAR
+   ===================================================== */
 
 .leftside {
     position: fixed;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: flex-start;
+
     background-color: rgba(248, 202, 250, 0.719);
-    margin-top: 0px;
+
     margin-top: 65px;
+
     padding-left: 4px;
     padding-right: 4px;
+
+    /*
+       Keep sidebar below search area
+    */
+    z-index: 100;
 }
 
 .searchicon {
     width: 35px;
-    height: 35px;   
+    height: 35px;
+
     padding-top: 5px;
     padding-left: -10px;
 }
@@ -328,130 +476,168 @@ body {
 .home {
     width: 25px;
     height: 25px;
+
     padding-left: 15px;
+
     margin-top: 1px;
 }
 
 .hometext {
     margin-left: 13px;
     margin-top: 6px;
+
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
     font-size: 11px;
 }
 
 .shorts {
     width: 22px;
     height: 26px;
+
     padding-left: 18px;
+
     margin-top: 21px;
 }
 
 .shortstext {
     margin-left: 13px;
     margin-top: 6px;
+
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
     font-size: 11px;
 }
 
 .subscription {
     width: 26px;
     height: 26px;
+
     padding-left: 15px;
+
     margin-top: 21px;
 }
 
 .subscriptiontext {
     margin-left: -1px;
     margin-top: 8px;
+
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
     font-size: 10px;
 }
 
 .profile2 {
     width: 26px;
     height: 26px;
+
     padding-left: 15px;
+
     margin-top: 21px;
 }
 
 .profiletext {
     margin-left: 19.5px;
     margin-top: 6px;
+
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
     font-size: 11px;
 }
 
-/* Everything about the Chips at the Top */
+
+/* =====================================================
+   CHIPS AT THE TOP
+   ===================================================== */
+
 .wrapper {
     width: 100%;
 }
 
 .sectors {
     position: fixed;
+
     margin-top: 35px;
-    margin-left: 60PX;
+    margin-left: 60px;
+
     display: flex;
+
     gap: 12px;
+
     overflow-x: auto;
+
     white-space: nowrap;
+
     scroll-behavior: smooth;
+
     padding: 10px 0;
 
+    /*
+       Keep chips below search area
+    */
+    z-index: 200;
+
     -ms-overflow-style: touch;
-
     scrollbar-width: none;
-
 }
 
-
-/* Hide the Scrollbar for a cleaner look */
 .sectors::-webkit-scrollbar {
     display: none;
 }
 
-/* Individual Pill Buttons (Chips) */
+
+/* INDIVIDUAL CHIPS */
+
 .chip {
     display: inline-block;
+
     padding: 0.5px 14px;
+
     background-color: #f2f2f2;
     color: #0f0f0f;
+
     text-decoration: none;
+
     border-radius: 8px;
+
     font-family: Roboto, "Arial", sans-serif;
+
     font-size: 14px;
     font-weight: 600;
+
     transition: background-color 0.2s;
+
     line-height: 2rem;
 }
 
-/* Hover Effect */
 .chip:hover {
     background-color: #e5e5e5;
 }
 
-/* The active/selected button lock */
 .chip.active {
     background-color: #0f0f0f;
     color: white;
 }
 
-/* End of Evverything about the Chips */
 
+/* =====================================================
+   VIDEOS
+   ===================================================== */
 
-/*Videos*/
 .video-grid {
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
-    /* 3 columns */
+
     gap: 16px;
-    /* space between videos */
+
     max-width: 1200px;
+
     margin: 0 auto;
+
     padding-top: 70px;
 }
 
-
-/*The Hover effect on the videos*/
 .video-card:hover {
     background-color: rgb(203, 245, 245);
     transition: background 0.7s;
