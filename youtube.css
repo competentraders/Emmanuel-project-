@@ -549,6 +549,9 @@ body {
 /* =====================================================
    CHIPS AT THE TOP
    ===================================================== */
+/* =====================================================
+   HORIZONTAL SCROLLING CHIPS
+   ===================================================== */
 
 .wrapper {
     width: 100%;
@@ -557,38 +560,57 @@ body {
 .sectors {
     position: fixed;
 
-    margin-top: 35px;
-    margin-left: 60px;
+    top: 35px;
+    left: 60px;
+
+    width: calc(100% - 60px);
 
     display: flex;
+    flex-wrap: nowrap;
 
     gap: 12px;
 
+    /*
+       This is what makes it scroll horizontally
+    */
     overflow-x: auto;
+    overflow-y: hidden;
 
+    /*
+       Prevent the chips from going to another line
+    */
     white-space: nowrap;
-
-    scroll-behavior: smooth;
 
     padding: 10px 0;
 
     /*
-       Keep chips below search area
+       Smooth scrolling
     */
-    z-index: 200;
+    scroll-behavior: smooth;
 
-    -ms-overflow-style: touch;
+    /*
+       Hide scrollbar
+    */
     scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
+    z-index: 200;
 }
 
+/* Chrome, Edge, Safari */
 .sectors::-webkit-scrollbar {
     display: none;
 }
 
 
-/* INDIVIDUAL CHIPS */
+/* =====================================================
+   INDIVIDUAL CHIPS
+   ===================================================== */
 
 .chip {
+    flex: 0 0 auto;
+
     display: inline-block;
 
     padding: 0.5px 14px;
@@ -600,14 +622,14 @@ body {
 
     border-radius: 8px;
 
-    font-family: Roboto, "Arial", sans-serif;
+    font-family: Roboto, Arial, sans-serif;
 
     font-size: 14px;
     font-weight: 600;
 
-    transition: background-color 0.2s;
-
     line-height: 2rem;
+
+    transition: background-color 0.2s;
 }
 
 .chip:hover {
@@ -618,7 +640,6 @@ body {
     background-color: #0f0f0f;
     color: white;
 }
-
 
 /* =====================================================
    VIDEOS
