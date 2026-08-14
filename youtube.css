@@ -311,7 +311,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: aqua;
+    background-color: rgba(248, 202, 250, 0.719);
     margin-top: 0px;
     margin-top: 65px;
     padding-left: 4px;
@@ -320,7 +320,7 @@ body {
 
 .searchicon {
     width: 35px;
-    height: 35px;
+    height: 35px;   
     padding-top: 5px;
     padding-left: -10px;
 }
@@ -382,12 +382,12 @@ body {
 }
 
 /* Everything about the Chips at the Top */
-.wrapper{
+.wrapper {
     width: 100%;
 }
 
 .sectors {
-   position: fixed;
+    position: fixed;
     margin-top: 35px;
     margin-left: 60PX;
     display: flex;
@@ -400,7 +400,7 @@ body {
     -ms-overflow-style: touch;
 
     scrollbar-width: none;
-       
+
 }
 
 
@@ -453,8 +453,8 @@ body {
 
 /*The Hover effect on the videos*/
 .video-card:hover {
-    background-color: aqua;
-    transition: background 0.9s;
+    background-color: rgb(203, 245, 245);
+    transition: background 0.7s;
 }
 
 .video:hover {
